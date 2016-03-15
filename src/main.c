@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/15 15:07:11 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/15 23:33:54 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ int		main(int ac, char **av, char **env)
 	cursor = 0;
 	files = ft_save(av);
 	ft_can();
+	ft_aff(files, cursor);
 	while (read(0 , buffer, 3))
 	{
-		ft_key_hook(buffer, &cursor);
+		if (ft_key_hook(buffer, &cursor))
+			ft_putstr("Check\n");
 		ft_aff(files, cursor);
 	}
 	return (0);

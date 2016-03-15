@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:22:34 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/15 15:02:43 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/15 23:34:21 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int		ft_aff(t_files *files, int cursor)
 {
-	t_files *tmp;
-	size_t	maxlen;
-	struct winsize w;
+	t_files			*tmp;
+	size_t			maxlen;
+	struct winsize	w;
+	int				i;
 
+	i = 0;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	tmp = files;
 	maxlen = 0;
@@ -32,16 +34,22 @@ int		ft_aff(t_files *files, int cursor)
 	while (files != NULL)
 	{
 		if (files->id == cursor)
+			ft_putcolor(files->name, BLUE);
+		else
+			ft_putstr(files->name);
+		ft_putstr("     ");
+		if (i >= (int)(w.ws_col / (maxlen + 5)))
 		{
-			ft_putcolor(files->name, RED);
 			ft_putchar('\n');
+			i = 0;
 		}
 		else
-			ft_putendl(files->name);
+			i++;
+
 		files = files->next;
 	}
-	printf("Maxlen = %zu\n", maxlen);
-	printf ("lines %d\n", w.ws_row);
-	printf ("columns %d\n", w.ws_col);
+	//printf("Maxlen = %zu\n", maxlen);
+	//printf ("lines %d\n", w.ws_row);
+	//printf ("columns %d\n", w.ws_col);
 	return (0);
 }

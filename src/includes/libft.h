@@ -6,7 +6,7 @@
 /*   By: lucas <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/04 01:54:04 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/27 16:20:02 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/15 23:16:31 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define RED "\033[31m"
 # define GREEN "\033[32m"
 # define YELLOW "\033[33m"
-# define BLUE "\033[34m"
+# define BLUE "\e[104m"
 # define VIOLET "\033[35m"
 # define TURQUOISE "\033[36m"
 # define WHITE "\033[37m"
