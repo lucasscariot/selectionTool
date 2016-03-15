@@ -6,20 +6,42 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:22:34 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/15 10:42:09 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/15 15:02:43 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		ft_aff(char **av, char **env)
+int		ft_aff(t_files *files, int cursor)
 {
-	int	i;
+	t_files *tmp;
+	size_t	maxlen;
+	struct winsize w;
 
-	i = 1;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	tmp = files;
+	maxlen = 0;
+	while (files != NULL)
+	{
+		if (ft_strlen(files->name) > maxlen)
+			maxlen = ft_strlen(files->name);
+		files = files->next;
+	}
+	files = tmp;
 	system("clear");
-	(void)env;
-	while (av[i])
-		ft_putendl(av[i++]);
-	return (i);
+	while (files != NULL)
+	{
+		if (files->id == cursor)
+		{
+			ft_putcolor(files->name, RED);
+			ft_putchar('\n');
+		}
+		else
+			ft_putendl(files->name);
+		files = files->next;
+	}
+	printf("Maxlen = %zu\n", maxlen);
+	printf ("lines %d\n", w.ws_row);
+	printf ("columns %d\n", w.ws_col);
+	return (0);
 }
