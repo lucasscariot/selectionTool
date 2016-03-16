@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:22:34 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/15 23:34:21 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/16 11:44:52 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,17 @@ int		ft_aff(t_files *files, int cursor)
 	while (files != NULL)
 	{
 		if (files->id == cursor)
-			ft_putcolor(files->name, BLUE);
+			ft_putcolor(files->name, SOULIGNE);
 		else
-			ft_putstr(files->name);
-		ft_putstr("     ");
-		if (i >= (int)(w.ws_col / (maxlen + 5)))
+		{
+			if (files->chckd)
+				ft_putcolor(files->name, BLUE);
+			else
+				ft_putstr(files->name);
+		}
+		ft_putstr("  ");
+		ft_putnchar(' ', maxlen - ft_strlen(files->name));
+		if (i >= (int)(w.ws_col / (maxlen + 7)))
 		{
 			ft_putchar('\n');
 			i = 0;

@@ -6,7 +6,7 @@
 /*   By: lucas <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/04 01:54:04 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/15 23:16:31 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/16 11:44:43 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define VIOLET "\033[35m"
 # define TURQUOISE "\033[36m"
 # define WHITE "\033[37m"
+# define SOULIGNE "\033[4m"
 
 # include <unistd.h>
 # include <stdlib.h>

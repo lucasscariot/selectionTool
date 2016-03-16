@@ -6,7 +6,7 @@
 #    By: lscariot <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/22 09:44:59 by lscariot          #+#    #+#              #
-#    Updated: 2016/03/15 13:58:26 by lucas            ###   ########.fr        #
+#    Updated: 2016/03/16 11:39:02 by lscariot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ I_DIR	=
 
 FLAGS	= -Wall -Wextra -Werror $(I_DIR) $(LIBS_DIR)
 
-FILES	= main.c	ft_can.c	ft_aff.c	ft_key_hook.c	ft_save.c
+FILES	= main.c	ft_can.c	ft_aff.c	ft_key_hook.c	ft_save.c	ft_check.c
 
 LIBS_F	= ./libft/libft.a -lncurses
 
