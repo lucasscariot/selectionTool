@@ -6,19 +6,22 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:22:34 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/16 11:44:52 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/16 16:17:31 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		ft_aff(t_files *files, int cursor)
+int		ft_aff(t_files *files, int cursor, int listlen)
 {
 	t_files			*tmp;
 	size_t			maxlen;
 	struct winsize	w;
 	int				i;
+	int				fd;
 
+	if (!(fd = open("/dev/tty", O_WRONLY)))
+		ft_exit(1);
 	i = 0;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	tmp = files;
@@ -40,10 +43,13 @@ int		ft_aff(t_files *files, int cursor)
 			if (files->chckd)
 				ft_putcolor(files->name, BLUE);
 			else
-				ft_putstr(files->name);
+				ft_putstr_fd(files->name, fd);
 		}
-		ft_putstr("  ");
-		ft_putnchar(' ', maxlen - ft_strlen(files->name));
+		if (files->id < listlen)
+		{
+			ft_putstr("  ");
+			ft_putnchar(' ', maxlen - ft_strlen(files->name));
+		}
 		if (i >= (int)(w.ws_col / (maxlen + 7)))
 		{
 			ft_putchar('\n');
@@ -51,7 +57,6 @@ int		ft_aff(t_files *files, int cursor)
 		}
 		else
 			i++;
-
 		files = files->next;
 	}
 	//printf("Maxlen = %zu\n", maxlen);

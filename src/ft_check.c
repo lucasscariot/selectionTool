@@ -6,7 +6,7 @@
 /*   By: lscariot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 11:34:36 by lscariot          #+#    #+#             */
-/*   Updated: 2016/03/16 11:41:50 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/16 14:39:57 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int		ft_check(t_files *files, int cursor)
 {
 	while (cursor--)
 		files = files->next;
-	files->chckd = 1;
+	if (files->chckd)
+		files->chckd = 0;
+	else
+		files->chckd = 1;
 	return (1);
 }
