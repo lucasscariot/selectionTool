@@ -1,42 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_end.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/17 15:46:36 by lucas            ###   ########.fr       */
+/*   Created: 2016/03/17 10:32:26 by lucas             #+#    #+#             */
+/*   Updated: 2016/03/17 15:28:54 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		main(int ac, char **av)
+int     ft_exit(int i)
 {
-	char		buffer[3];
-	t_files		*files;
-	int			cursor;
-	int			maxlen;
+	struct termios term;
 
-	(void)ac;
-	cursor = 0;
-	files = ft_save(av);
-	maxlen = ft_list_len(files);
-	if (!files)
+	tcgetattr(0, &term);
+	term.c_lflag = (ICANON | ECHO);
+	tcsetattr(0, 0, &term);
+	if (i == 4)
 	{
-		ft_putstr("genius..\n");
-		return (0);
+		ft_putstr_fd("genius\n", 2);
+		exit(0);
 	}
-	ft_can();
-	ft_aff(files, cursor, maxlen);
-	while (read(0 , buffer, 3))
+	exit(i);
+}
+
+int		ft_end(t_files *files)
+{
+	int i;
+
+	i = 0;
+	ft_putstr_fd("\033c", 3);
+	while (files)
 	{
-		ft_key_hook(files, buffer, &cursor, maxlen);
-		ft_aff(files, cursor, maxlen);
-		buffer[0] = 0;
-		buffer[1] = 0;
-		buffer[2] = 0;
+		if (files->chckd)
+		{
+			if (i > 0)
+				ft_putchar(' ');
+			ft_putstr(files->name);
+			i++;
+		}
+		files = files->next;
 	}
-	return (0);
+	ft_exit(0);
+	return (i);
 }

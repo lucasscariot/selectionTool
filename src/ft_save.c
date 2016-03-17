@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:43:29 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/16 11:42:06 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/17 15:22:53 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ t_files		*ft_save(char **av)
 	file = NULL;
 	while (av[i])
 		file = ft_new_file(file, av[i++]);
+	if (!file)
+		ft_exit(4);
 	return (file);
 }

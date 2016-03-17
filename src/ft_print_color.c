@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/17 15:46:36 by lucas            ###   ########.fr       */
+/*   Created: 2016/03/17 10:08:30 by lucas             #+#    #+#             */
+/*   Updated: 2016/03/17 10:25:11 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		main(int ac, char **av)
+void	ft_putnchar_fd(char c, int n, int fd)
 {
-	char		buffer[3];
-	t_files		*files;
-	int			cursor;
-	int			maxlen;
+	if (n <= 0)
+		return ;
+	while (n--)
+	{
+		ft_putchar_fd(c, fd);
+	}
+}
 
-	(void)ac;
-	cursor = 0;
-	files = ft_save(av);
-	maxlen = ft_list_len(files);
-	if (!files)
-	{
-		ft_putstr("genius..\n");
-		return (0);
-	}
-	ft_can();
-	ft_aff(files, cursor, maxlen);
-	while (read(0 , buffer, 3))
-	{
-		ft_key_hook(files, buffer, &cursor, maxlen);
-		ft_aff(files, cursor, maxlen);
-		buffer[0] = 0;
-		buffer[1] = 0;
-		buffer[2] = 0;
-	}
+int		ft_print_color(t_files *files, int cursor, int fd)
+{
+	if (cursor == files->id)
+		ft_putstr_fd(SOULIGNE, fd);
+	if (files->chckd)
+		ft_putstr_fd(BLUE, fd);
+	ft_putstr_fd(files->name, fd);
+	ft_putstr_fd("\033[0m", fd);
 	return (0);
 }
