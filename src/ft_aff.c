@@ -42,6 +42,7 @@ int		ft_aff(t_files *files, int cursor, int listlen)
 			ft_putstr_fd("  ", fd);
 			ft_putnchar_fd(' ', maxlen - ft_strlen(files->name), fd);
 		}
+		//dprintf(fd, "%d >= %d\n", i, (int)(w.ws_col / (maxlen + 3)));
 		if (i >= (int)(w.ws_col / (maxlen + 7)))
 		{
 			ft_putchar_fd('\n', fd);

@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/17 15:46:36 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/18 09:14:35 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		main(int ac, char **av)
 	{
 		ft_key_hook(files, buffer, &cursor, maxlen);
 		ft_aff(files, cursor, maxlen);
+		printf("%d %d %d\n", buffer[0], buffer[1], buffer[2]);
 		buffer[0] = 0;
 		buffer[1] = 0;
 		buffer[2] = 0;
