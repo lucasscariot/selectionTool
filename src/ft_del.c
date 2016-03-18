@@ -6,38 +6,53 @@
 /*   By: lscariot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:43:30 by lscariot          #+#    #+#             */
-/*   Updated: 2016/03/18 11:48:23 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/18 14:02:26 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	ft_index(t_files *files)
+void    ft_index(t_files *files)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (files)
 	{
-		files->id = i;
+		if (files->del == 0)
+		{
+			files->id = i;
+			i++;
+		}
 		files = files->next;
-		i++;
 	}
 }
 
-int		ft_del_list(t_files *files, int cursor)
+void	ft_del_list(t_files *var, int cursor)
 {
-	t_files *tmp;
+	t_files	*save;
+	t_files	*tmp;
+	int		hoo;
 
-	tmp = files;
-	while (cursor > 0)
+	hoo = cursor;
+	tmp = var;
+	if (ft_list_len(var) == 0)
+		ft_exit(0);
+	if (hoo == 0)
 	{
-		files = files->next;
-		cursor--;
+		ft_swap_list(var, var->next);
+		ft_del_list(var, cursor + 1);
+		return ;
 	}
-	files->next = ft_del_one(files);
-	ft_index(tmp);
-	return (0);
+	hoo--;
+	while (hoo--)
+		var = var->next;
+	if (!var)
+		return ;
+	save = var->next;
+	var->next = var->next->next;
+	ft_free_one(save);
+	free(save);
 }
 
 t_files	*ft_del_one(t_files *file)
@@ -45,6 +60,7 @@ t_files	*ft_del_one(t_files *file)
 	t_files *tmp;
 
 	tmp = file->next;
+	file->del = 1;
 	free(file->name);
 	free(file);
 	return (tmp);

@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:43:29 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/17 15:22:53 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/18 13:10:16 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_files		*ft_new_file(t_files *files, char *n)
 	new_file->name = ft_strdup(n);
 	new_file->id = i;
 	new_file->chckd = 0;
+	new_file->del = 0;
 	i++;
 	new_file->next = NULL;
 	if (!files)

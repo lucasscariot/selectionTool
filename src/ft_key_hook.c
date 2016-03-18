@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 12:59:02 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/18 11:30:59 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/18 14:05:41 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ int		ft_key_hook(t_files *fil, char *buff, int *cursor, int maxlen)
 	else if (buff[0] == 27 && buff[2] == 66)
 		ft_inc_cursor(cursor, maxlen, 0);
 	else if (buff[0] == 127 && buff[2] == 0)
+	{
 		ft_del_list(fil, *cursor);
+		if (*cursor == maxlen)
+			ft_inc_cursor(cursor, maxlen, 1);
+	}
 	else if (buff[0] == 32 && buff[2] == 0)
 	{
 		ft_check(fil, *cursor);

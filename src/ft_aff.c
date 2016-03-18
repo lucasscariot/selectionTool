@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:22:34 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/18 11:48:31 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/18 14:13:48 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,27 @@ int		ft_aff(t_files *files, int cursor, int listlen)
 		files = files->next;
 	}
 	files = tmp;
+	ft_index(files);
 	ft_putstr_fd("\033c", fd);
 	while (files != NULL)
 	{
+		if (files->del)
+			files = files->next;
 		ft_print_color(files, cursor, fd);
 		if (files->id < listlen)
 		{
 			ft_putstr_fd("  ", fd);
 			ft_putnchar_fd(' ', maxlen - ft_strlen(files->name), fd);
 		}
-		dprintf(fd, "%d >= %d\n", i, (int)(w.ws_col / (maxlen + 3)));
+		//dprintf(fd, "%d >= %d\n", i, (int)(w.ws_col / (maxlen + 3)));
 		if (i >= (int)(w.ws_col / (maxlen + 7)))
 		{
-			//ft_putchar_fd('\n', fd);
+			ft_putchar_fd('\n', fd);
 			i = 0;
 		}
 		else
 			i++;
 		files = files->next;
 	}
-	//printf("Maxlen = %zu\n", maxlen);
-	//printf ("lines %d\n", w.ws_row);
-	//printf ("columns %d\n", w.ws_col);
 	return (0);
 }

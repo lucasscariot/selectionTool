@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 10:32:26 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/17 15:28:54 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/18 14:10:01 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_end(t_files *files)
 	ft_putstr_fd("\033c", 3);
 	while (files)
 	{
-		if (files->chckd)
+		if (files->chckd || files->del)
 		{
 			if (i > 0)
 				ft_putchar(' ');
