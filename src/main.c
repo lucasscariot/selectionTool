@@ -6,28 +6,29 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/18 14:06:23 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/24 00:18:46 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
+void sig_handler(int signo)
+{
+	if (signo == SIGWINCH)
+		ft_aff(files, cursor, maxlen);
+}
+
 int		main(int ac, char **av)
 {
 	char		buffer[3];
-	t_files		*files;
-	int			cursor;
-	int			maxlen;
 
 	(void)ac;
 	cursor = 0;
 	files = ft_save(av);
 	maxlen = ft_list_len(files);
 	if (!files)
-	{
-		ft_putstr("genius..\n");
-		return (0);
-	}
+		ft_exit(4);
+	signal(SIGWINCH, sig_handler);
 	ft_can();
 	ft_aff(files, cursor, maxlen);
 	while (read(0 , buffer, 3))

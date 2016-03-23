@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/18 13:55:52 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/24 00:15:55 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,9 @@ int		ft_exit(int i);
 int		ft_print_color(t_files *files, int cursor, int fd);
 void	ft_putnchar_fd(char c, int n, int fd);
 int		ft_end(t_files *files);
+
+t_files *files;
+int		cursor;
+int		maxlen;
+
 #endif
