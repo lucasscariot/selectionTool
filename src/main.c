@@ -6,16 +6,18 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/24 00:18:46 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/27 13:14:15 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void sig_handler(int signo)
+void	sig_handler(int signo)
 {
 	if (signo == SIGWINCH)
 		ft_aff(files, cursor, maxlen);
+	if (signo == SIGTSTP)
+		ft_putstr("CtrlZ\n");
 }
 
 int		main(int ac, char **av)
@@ -29,6 +31,7 @@ int		main(int ac, char **av)
 	if (!files)
 		ft_exit(4);
 	signal(SIGWINCH, sig_handler);
+	signal(SIGTSTP, sig_handler);
 	ft_can();
 	ft_aff(files, cursor, maxlen);
 	while (read(0 , buffer, 3))

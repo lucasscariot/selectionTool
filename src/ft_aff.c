@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:22:34 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/20 10:56:31 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/24 10:51:31 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int		ft_aff(t_files *files, int cursor, int listlen)
 			ft_putstr_fd("  ", fd);
 			ft_putnchar_fd(' ', maxlen - ft_strlen(files->name), fd);
 		}
-		//dprintf(fd, "%d >= %d\n", i, (int)(w.ws_col / (maxlen + 3)));
 		if (i >= (int)(w.ws_col / (maxlen + 7)))
 		{
 			ft_putchar_fd('\n', fd);
