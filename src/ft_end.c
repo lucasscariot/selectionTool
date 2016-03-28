@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 10:32:26 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/27 13:20:42 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/28 14:44:06 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int     ft_exit(int i)
 
 	if (tcgetattr(0, &term) == -1)
 		return (-1);
-	term.c_lflag = (ICANON | ECHO);
+	term.c_lflag |= ECHO;
+	term.c_lflag |= ICANON;
 	if (tcsetattr(0, 0, &term) == -1)
 		return (-1);
 	if (i == 4)
