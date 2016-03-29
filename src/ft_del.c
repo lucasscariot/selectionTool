@@ -6,7 +6,7 @@
 /*   By: lscariot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:43:30 by lscariot          #+#    #+#             */
-/*   Updated: 2016/03/18 14:02:26 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/29 06:10:38 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	ft_del_list(t_files *var, int cursor)
 		ft_del_list(var, cursor + 1);
 		return ;
 	}
-	hoo--;
-	while (hoo--)
+	while (--hoo)
 		var = var->next;
 	if (!var)
 		return ;

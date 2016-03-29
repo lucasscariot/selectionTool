@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 10:32:26 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/27 13:20:42 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/29 05:52:59 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,7 @@
 
 int     ft_exit(int i)
 {
-	struct termios term;
-
-	if (tcgetattr(0, &term) == -1)
-		return (-1);
-	term.c_lflag = (ICANON | ECHO);
-	if (tcsetattr(0, 0, &term) == -1)
-		return (-1);
+	tcsetattr( 0, TCSANOW, &g_save);
 	if (i == 4)
 	{
 		ft_putstr_fd("genius\n", 2);
