@@ -6,24 +6,35 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 10:22:34 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/29 12:48:40 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/31 14:49:09 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		ft_aff(t_files *files, int cursor, int listlen)
+int		ft_affiche(t_files *files, int cursor, int fd)
 {
-	t_files			*tmp;
-	size_t			maxlen;
-	struct winsize	w;
-	int				i;
-	int				fd;
+	ft_index(files);
+	ft_putstr_fd("\033c", fd);
+	while (files != NULL)
+	{
+		if (files->del)
+			files = files->next;
+		ft_print_color(files, cursor, fd);
+		ft_putchar_fd('\n', fd);
+		files = files->next;
+	}
+	return (0);
+}
+
+int		ft_aff(t_files *files, int cursor)
+{
+	t_files         *tmp;
+	size_t          maxlen;
+	int             fd;
 
 	if (!(fd = open("/dev/tty", O_WRONLY)))
 		ft_exit(1);
-	i = 0;
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	tmp = files;
 	maxlen = 0;
 	while (files != NULL)
@@ -32,31 +43,7 @@ int		ft_aff(t_files *files, int cursor, int listlen)
 			maxlen = ft_strlen(files->name);
 		files = files->next;
 	}
-	files = tmp;
-	ft_index(files);
-	ft_putstr_fd("\033c", fd);
-	(void)listlen;
-	while (files != NULL)
-	{
-		if (files->del)
-			files = files->next;
-		ft_print_color(files, cursor, fd);
-		ft_putchar_fd('\n', fd);
-		/*
-		if (files->id < listlen)
-		{
-			ft_putstr_fd("  ", fd);
-			ft_putnchar_fd(' ', maxlen - ft_strlen(files->name), fd);
-		}
-		if (i >= (int)(w.ws_col / (maxlen + 7)))
-		{
-			ft_putchar_fd('\n', fd);
-			i = 0;
-		}
-		else
-			i++;
-		*/
-		files = files->next;
-	}
+	ft_affiche(tmp, cursor, fd);
+	close(fd);
 	return (0);
 }

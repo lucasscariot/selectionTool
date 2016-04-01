@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/29 12:45:18 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/31 14:40:21 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sig_handler(int signo)
 	cmd[0] = g_term.c_cc[VSUSP];
 	cmd[1] = '\0';
 	if (signo == SIGWINCH)
-		ft_aff(g_files, g_cursor, g_maxlen);
+		ft_aff(g_files, g_cursor);
 	if (signo == SIGTSTP)
 	{
 		signal(SIGTSTP, SIG_DFL);
@@ -29,7 +29,7 @@ void	sig_handler(int signo)
 	if (signo == SIGCONT)
 	{
 		ft_can();
-		ft_aff(g_files, g_cursor, g_maxlen);
+		ft_aff(g_files, g_cursor);
 	}
 }
 
@@ -47,12 +47,12 @@ int		main(int ac, char **av)
 	signal(SIGTSTP, sig_handler);
 	signal(SIGCONT, sig_handler);
 	ft_can();
-	ft_aff(g_files, g_cursor, g_maxlen);
+	ft_aff(g_files, g_cursor);
 	while (read(0 , buffer, 3))
 	{
 		g_maxlen = ft_list_len(g_files);
 		ft_key_hook(g_files, buffer, &g_cursor, g_maxlen);
-		ft_aff(g_files, g_cursor, g_maxlen);
+		ft_aff(g_files, g_cursor);
 		buffer[0] = 0;
 		buffer[1] = 0;
 		buffer[2] = 0;

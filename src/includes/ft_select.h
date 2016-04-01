@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/29 05:51:34 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/31 14:34:47 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_files
 	struct s_files	*next;
 }				t_files;
 
-int				ft_aff(t_files *files, int cursor, int listlen);
+int				ft_aff(t_files *files, int cursor);
 t_files			*ft_save(char **av);
 int				ft_list_len(t_files *files);
 void    		ft_inc_cursor(int *cursor, int maxlen, int version);

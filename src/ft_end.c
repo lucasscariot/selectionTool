@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 10:32:26 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/29 05:52:59 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/31 14:46:38 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ int     ft_exit(int i)
 
 int		ft_end(t_files *files)
 {
-	int i;
+	int	i;
+	int	fd;
 
 	i = 0;
-	ft_putstr_fd("\033c", 3);
+	if (!(fd = open("/dev/tty", O_WRONLY)))
+		ft_exit(1);
+	ft_putstr_fd("\033c", fd);
 	while (files)
 	{
 		if (files->chckd || files->del)
@@ -40,6 +43,7 @@ int		ft_end(t_files *files)
 		}
 		files = files->next;
 	}
+	close(fd);
 	ft_exit(0);
 	return (i);
 }
