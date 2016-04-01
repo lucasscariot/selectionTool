@@ -6,15 +6,15 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 10:32:26 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/31 14:46:38 by lucas            ###   ########.fr       */
+/*   Updated: 2016/04/01 13:59:13 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int     ft_exit(int i)
+int		ft_exit(int i)
 {
-	tcsetattr( 0, TCSANOW, &g_save);
+	tcsetattr(0, TCSANOW, &g_save);
 	if (i == 4)
 	{
 		ft_putstr_fd("genius\n", 2);

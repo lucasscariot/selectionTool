@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/31 14:34:47 by lucas            ###   ########.fr       */
+/*   Updated: 2016/04/01 16:29:04 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_files
 int				ft_aff(t_files *files, int cursor);
 t_files			*ft_save(char **av);
 int				ft_list_len(t_files *files);
-void    		ft_inc_cursor(int *cursor, int maxlen, int version);
+void			ft_inc_cursor(int *cursor, int maxlen, int version);
 int				ft_check(t_files *files, int cursor);
 int				ft_key_hook(t_files *fil, char *buff, int *cursor, int maxlen);
 void			ft_del_list(t_files *files, int cursor);
@@ -49,6 +49,8 @@ int				ft_exit(int i);
 int				ft_print_color(t_files *files, int cursor, int fd);
 void			ft_putnchar_fd(char c, int n, int fd);
 int				ft_end(t_files *files);
+int				ft_signal(void);
+int				ft_secure(char **env);
 
 t_files			*g_files;
 int				g_cursor;

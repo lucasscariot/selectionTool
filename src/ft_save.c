@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:43:29 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/18 13:10:16 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/04/01 13:44:35 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ t_files		*ft_new_file(t_files *files, char *n)
 	t_files		*tmp;
 	static int	i;
 
-	if (!i)
-		i = 0;
+	i ? 0 : (i = 0);
 	new_file = malloc(sizeof(t_files));
 	if (!new_file)
 		return (NULL);

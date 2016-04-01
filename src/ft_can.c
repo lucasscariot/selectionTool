@@ -6,15 +6,15 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:18:10 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/29 15:11:48 by lucas            ###   ########.fr       */
+/*   Updated: 2016/04/01 14:00:41 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int	ft_can()
+int	ft_can(void)
 {
-	char           *name_term;
+	char	*name_term;
 
 	tcgetattr(0, &g_save);
 	if ((name_term = getenv("TERM")) == NULL)

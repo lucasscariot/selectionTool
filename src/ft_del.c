@@ -6,13 +6,13 @@
 /*   By: lscariot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:43:30 by lscariot          #+#    #+#             */
-/*   Updated: 2016/03/29 06:10:38 by lucas            ###   ########.fr       */
+/*   Updated: 2016/04/01 13:58:01 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void    ft_index(t_files *files)
+void	ft_index(t_files *files)
 {
 	int i;
 
